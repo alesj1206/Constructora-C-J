@@ -8,10 +8,31 @@ defenderse frente a los Artículos I–VII. Si una decisión futura contradice e
 documento, primero se enmienda este documento (o la constitución).
 -->
 
-**Versión:** 1.0.0
+**Versión:** 1.1.0
 **Fecha:** 2026-11-01
-**Estado:** Propuesta recomendada
+**Estado:** Vigente
 **Relacionado con:** `spec/constitution.md`
+
+---
+
+## 0. Enmienda 1.1.0 — Backend: MySQL local en vez de Supabase
+
+> Por decisión del equipo, el backend **no usa Supabase**. Se usa una base de
+> datos **MySQL local** administrada por el propio equipo.
+>
+> **Implicaciones para la web admin (ya implementadas):**
+> - **Base de datos:** MySQL 8.0 (`constructora_cj`), driver `mysql2`. La app se
+>   conecta con un usuario no-root (`cj_app`).
+> - **Autenticación propia:** credenciales en la tabla `users`, contraseñas con
+>   hash **bcrypt** (`bcryptjs`), verificadas en el servidor.
+> - **Sesión:** cookie **JWT** firmada, HTTP-only (`jose`), sin tabla de sesiones.
+> - **Clean Architecture intacta:** el cambio solo afectó la capa `data/` + `lib/`
+>   y añadió server actions; el `domain/` y la UI no cambiaron.
+> - Variables de entorno: `MYSQL_*` y `AUTH_JWT_SECRET` en `.env.local`.
+> - La migración vive en `web-admin/db/0001_init.sql`.
+>
+> Las secciones 3 (Supabase) y partes de la 4/5 que mencionan Supabase quedan
+> como **contexto histórico** del análisis; prevalece esta enmienda.
 
 ---
 

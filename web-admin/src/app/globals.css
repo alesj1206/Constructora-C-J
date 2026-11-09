@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+/*
+ * The admin UI is designed for a light theme only (white cards, slate text,
+ * green/amber/red semaphore). We do NOT follow the OS dark mode, which would
+ * turn the page background black and clash with the design. Colors come from
+ * Tailwind utility classes on each element; the body just sets a light base.
+ */
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
